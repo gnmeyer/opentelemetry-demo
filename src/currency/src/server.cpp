@@ -239,19 +239,13 @@ class CurrencyService final : public oteldemo::CurrencyService::Service
 void RunServer(uint16_t port)
 {
   std::string address;
-  const char* netconf = std::getenv("IPV6_ENABLED");
+  const char* ipv6_addr = std::getenv("IPV6_ADDR");
   
-  // Debug output that will definitely show up
-  std::cout << "DEBUG: IPV6_ENABLED environment variable = " << (netconf ? netconf : "NULL") << std::endl;
-  
-  if (netconf != nullptr && (std::string(netconf) == "true" || std::string(netconf) == "1")) {
-    address = "[::]:" + std::to_string(port);
-    std::cout << "DEBUG: IPv6 ENABLED - binding to " << address << std::endl;
-    logger->Info("IPv6 enabled - binding to all IPv6 interfaces (dual-stack)");
+  if (ipv6_addr != nullptr) {
+    address = std::string(ipv6_addr) + ":" + std::to_string(port);
+    std::cout << "IPv6 ENABLED - binding to " << address << std::endl;
   } else {
     address = "0.0.0.0:" + std::to_string(port);
-    std::cout << "DEBUG: IPv6 DISABLED - binding to " << address << std::endl;
-    logger->Info("IPv6 disabled - binding to all IPv4 interfaces");
   }
 
   CurrencyService currencyService;
