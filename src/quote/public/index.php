@@ -90,11 +90,11 @@ $server = new HttpServer(function (ServerRequestInterface $request) use ($app) {
 
 $ip = "0.0.0.0";
 
-$ipv6_addr = getenv('LOCALHOST_IP');
+$localhost_ip = getenv('LOCALHOST_IP');
 
-if ($ipv6_addr) {
-    $ip = $ipv6_addr;
-    echo "IPv6 ENABLED - binding to {$ip}" . PHP_EOL;
+if ($localhost_ip) {
+    $ip = $localhost_ip;
+    echo "Overwriting Localhost IP: {$ip}" . PHP_EOL;
 } 
 
 $address = $ip . ':' . getenv('QUOTE_PORT');
