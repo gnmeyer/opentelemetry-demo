@@ -27,13 +27,14 @@ async fn main() -> std::io::Result<()> {
         .parse()
         .expect("$SHIPPING_PORT is not a valid port");
     
-    let addr = if let Ok(ipv6_addr) = env::var("IPV6_ADDR") {
-        let address = format!("{}:{}", ipv6_addr, port);
-        println!("IPv6 ENABLED - binding to {}", address);
-        address
-    } else {
-        format!("0.0.0.0:{}", port)
-    };
+    let mut ip = "0.0.0.0".to_string();
+    
+    if let Ok(localhost_ip) = env::var("LOCALHOST_IP") {
+        ip = localhost_ip;
+        println!("IPv6 ENABLED - binding to {}", ip);
+    }
+    
+    let addr = format!("{}:{}", ip, port);
     info!(
         name = "ServerStartedSuccessfully",
         addr = addr.as_str(),
