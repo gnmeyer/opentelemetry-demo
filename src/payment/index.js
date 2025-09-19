@@ -44,15 +44,17 @@ server.addService(health.service, new health.Implementation({
 
 server.addService(otelDemoPackage.oteldemo.PaymentService.service, { charge: chargeServiceHandler })
 
-const ipv6Addr = process.env.IPV6_ADDR;
-let address;
 
-if (ipv6Addr) {
-  address = `${ipv6Addr}:${process.env['PAYMENT_PORT']}`;
+let ip = "0.0.0.0";
+
+const localhost_ip = process.env.LOCALHOST_IP;
+
+if (localhost_ip) {
+  ip = localhost_ip;
   console.log(`IPv6 ENABLED - binding to ${address}`);
-} else {
-  address = `0.0.0.0:${process.env['PAYMENT_PORT']}`;
 }
+
+const address = ip + `:${process.env['PAYMENT_PORT']}`;
 
 server.bindAsync(address, grpc.ServerCredentials.createInsecure(), (err, port) => {
   if (err) {
