@@ -239,9 +239,11 @@ class CurrencyService final : public oteldemo::CurrencyService::Service
 void RunServer(uint16_t port)
 {
   std::string address;
-  const char* localhost_ip = std::getenv("LOCALHOST_IP");
-  
+  std::string ip;
+
   ip =  "0.0.0.0";
+
+  const char* localhost_ip = std::getenv("LOCALHOST_IP");
   
   if (localhost_ip != nullptr) {
     ip = std::string(localhost_ip);
