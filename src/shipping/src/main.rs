@@ -31,7 +31,7 @@ async fn main() -> std::io::Result<()> {
     
     if let Ok(localhost_ip) = env::var("LOCALHOST_IP") {
         ip = localhost_ip;
-        println!("IPv6 ENABLED - binding to {}", ip);
+        info!("Overwriting Localhost IP:  {ip}");
     }
     
     let addr = format!("{}:{}", ip, port);
