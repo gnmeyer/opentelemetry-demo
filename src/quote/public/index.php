@@ -90,7 +90,7 @@ $server = new HttpServer(function (ServerRequestInterface $request) use ($app) {
 
 $ip = "0.0.0.0";
 
-$ipv6_addr = getenv('IPV6_ADDR');
+$ipv6_addr = getenv('LOCALHOST_IP');
 
 if ($ipv6_addr) {
     $ip = $ipv6_addr;
