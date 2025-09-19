@@ -51,7 +51,7 @@ const localhost_ip = process.env.LOCALHOST_IP;
 
 if (localhost_ip) {
   ip = localhost_ip;
-  console.log(`IPv6 ENABLED - binding to ${address}`);
+  console.log(`IPv6 ENABLED - binding to ${ip}`);
 }
 
 const address = ip + `:${process.env['PAYMENT_PORT']}`;
