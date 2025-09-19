@@ -87,13 +87,14 @@ $server = new HttpServer(function (ServerRequestInterface $request) use ($app) {
 
     return $response;
 });
-// Configure IPv4 or IPv6 address based on environment variable
-$ipv6_enabled = strtolower(getenv('IPV6_ENABLED')) === 'true' || getenv('IPV6_ENABLED') === '1';
-$host = $ipv6_enabled ? '[::]' : '0.0.0.0';
-$address = $host . ':' . getenv('QUOTE_PORT');
+$ipv6_addr = getenv('IPV6_ADDR');
 
-echo "DEBUG: IPV6_ENABLED = " . (getenv('IPV6_ENABLED') ?: 'not set') . PHP_EOL;
-echo "DEBUG: Binding to {$address} (IPv6 " . ($ipv6_enabled ? 'ENABLED' : 'DISABLED') . ")" . PHP_EOL;
+if ($ipv6_addr) {
+    $address = $ipv6_addr . ':' . getenv('QUOTE_PORT');
+    echo "IPv6 ENABLED - binding to {$address}" . PHP_EOL;
+} else {
+    $address = '0.0.0.0:' . getenv('QUOTE_PORT');
+}
 
 $socket = new SocketServer($address);
 $server->listen($socket);
