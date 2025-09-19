@@ -87,14 +87,17 @@ $server = new HttpServer(function (ServerRequestInterface $request) use ($app) {
 
     return $response;
 });
+
+$ip = "0.0.0.0";
+
 $ipv6_addr = getenv('IPV6_ADDR');
 
 if ($ipv6_addr) {
-    $address = $ipv6_addr . ':' . getenv('QUOTE_PORT');
-    echo "IPv6 ENABLED - binding to {$address}" . PHP_EOL;
-} else {
-    $address = '0.0.0.0:' . getenv('QUOTE_PORT');
-}
+    $ip = $ipv6_addr;
+    echo "IPv6 ENABLED - binding to {$ip}" . PHP_EOL;
+} 
+
+$address = $ip . ':' . getenv('QUOTE_PORT');
 
 $socket = new SocketServer($address);
 $server->listen($socket);
