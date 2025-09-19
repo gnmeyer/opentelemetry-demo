@@ -241,12 +241,14 @@ void RunServer(uint16_t port)
   std::string address;
   const char* ipv6_addr = std::getenv("IPV6_ADDR");
   
-  if (ipv6_addr != nullptr) {
-    address = std::string(ipv6_addr) + ":" + std::to_string(port);
-    std::cout << "IPv6 ENABLED - binding to " << address << std::endl;
-  } else {
-    address = "0.0.0.0:" + std::to_string(port);
+  ip =  "0.0.0.0";
+  
+  if (localhost_ip != nullptr) {
+    ip = std::string(localhost_ip);
+    logger->Info("Overwriting Localhost IP: " + ip);
   }
+
+  address = ip + ":" +  std::to_string(port);
 
   CurrencyService currencyService;
   HealthServer healthService;
