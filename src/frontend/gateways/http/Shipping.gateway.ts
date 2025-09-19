@@ -4,7 +4,6 @@
 import { Address, CartItem, GetQuoteResponse } from '../../protos/demo';
 
 const { SHIPPING_ADDR = '' } = process.env;
-console.log(`SHIPPING_ADDR: ${SHIPPING_ADDR}`);
 
 // Transform address from camelCase to snake_case for HTTP API
 const transformAddress = (address: Address) => ({
@@ -28,7 +27,7 @@ const ShippingGateway = () => ({
       items: transformCartItems(itemList),
       address: transformAddress(address),
     };
-    console.log(`SHIPPING_ADDR: ${SHIPPING_ADDR}`);
+
     const response = await fetch(`${SHIPPING_ADDR}/get-quote`, {
       method: 'POST',
       headers: {
