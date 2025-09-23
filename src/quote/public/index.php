@@ -92,7 +92,7 @@ $ip = "0.0.0.0";
 
 $ipv6_enabled = getenv('IPV6_ENABLED');
 
-if ($ipv6_enabled) {
+if ($ipv6_enabled == "true") {
     $ip = "[::]";
     echo "Overwriting Localhost IP: {$ip}" . PHP_EOL;
 } 

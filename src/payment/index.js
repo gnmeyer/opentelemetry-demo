@@ -49,7 +49,7 @@ let ip = "0.0.0.0";
 
 const ipv6_enabled = process.env.IPV6_ENABLED;
 
-if (ipv6_enabled) {
+if (ipv6_enabled == "true") {
   ip = "[::]";
   logger.info(`Overwriting Localhost IP: ${ip}`)
 }

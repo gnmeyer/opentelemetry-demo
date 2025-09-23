@@ -30,8 +30,10 @@ async fn main() -> std::io::Result<()> {
     let mut ip = "0.0.0.0".to_string();
     
     if let Ok(ipv6_enabled) = env::var("IPV6_ENABLED") {
-        ip = "[::]";
-        info!("Overwriting Localhost IP:  {ip}");
+        if ipv6_enabled == "true" {
+            ip = "[::]".to_string();
+            info!("Overwriting Localhost IP:  {ip}");
+        }
     }
     
     let addr = format!("{}:{}", ip, port);
