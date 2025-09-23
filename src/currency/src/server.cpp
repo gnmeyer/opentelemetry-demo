@@ -243,10 +243,10 @@ void RunServer(uint16_t port)
 
   ip =  "0.0.0.0";
 
-  const char* localhost_ip = std::getenv("LOCALHOST_IP");
+  const char* ipv6_enabled = std::getenv("IPV6_ENABLED");
   
-  if (localhost_ip != nullptr) {
-    ip = std::string(localhost_ip);
+  if (ipv6_enabled != nullptr) {
+    ip = "[::]";
     logger->Info("Overwriting Localhost IP: " + ip);
   }
 

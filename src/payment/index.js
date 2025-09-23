@@ -47,10 +47,10 @@ server.addService(otelDemoPackage.oteldemo.PaymentService.service, { charge: cha
 
 let ip = "0.0.0.0";
 
-const localhost_ip = process.env.LOCALHOST_IP;
+const ipv6_enabled = process.env.IPV6_ENABLED;
 
-if (localhost_ip) {
-  ip = localhost_ip;
+if (ipv6_enabled) {
+  ip = "[::]";
   logger.info(`Overwriting Localhost IP: ${ip}`)
 }
 

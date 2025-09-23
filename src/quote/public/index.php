@@ -90,10 +90,10 @@ $server = new HttpServer(function (ServerRequestInterface $request) use ($app) {
 
 $ip = "0.0.0.0";
 
-$localhost_ip = getenv('LOCALHOST_IP');
+$ipv6_enabled = getenv('IPV6_ENABLED');
 
-if ($localhost_ip) {
-    $ip = $localhost_ip;
+if ($ipv6_enabled) {
+    $ip = "[::]";
     echo "Overwriting Localhost IP: {$ip}" . PHP_EOL;
 } 
 

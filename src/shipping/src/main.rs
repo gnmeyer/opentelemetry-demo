@@ -29,8 +29,8 @@ async fn main() -> std::io::Result<()> {
     
     let mut ip = "0.0.0.0".to_string();
     
-    if let Ok(localhost_ip) = env::var("LOCALHOST_IP") {
-        ip = localhost_ip;
+    if let Ok(ipv6_enabled) = env::var("IPV6_ENABLED") {
+        ip = "[::]";
         info!("Overwriting Localhost IP:  {ip}");
     }
     
