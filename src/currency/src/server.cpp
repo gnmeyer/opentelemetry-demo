@@ -238,9 +238,7 @@ class CurrencyService final : public oteldemo::CurrencyService::Service
 
 void RunServer(uint16_t port)
 {
-  std::string ip;
-
-  ip =  "0.0.0.0";
+  std::string ip("0.0.0.0");
 
   const char* ipv6_enabled = std::getenv("IPV6_ENABLED");
   
