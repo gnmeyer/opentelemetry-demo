@@ -61,7 +61,7 @@ server.bindAsync(address, grpc.ServerCredentials.createInsecure(), (err, port) =
     return logger.error({ err })
   }
 
-  logger.info(`payment gRPC server started on port ${port}`)
+  logger.info(`payment gRPC server started on ${address}`)
 })
 
 process.once('SIGINT', closeGracefully)
